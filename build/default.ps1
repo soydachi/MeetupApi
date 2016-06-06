@@ -57,7 +57,7 @@ task Setup -description "Setup environment" {
     $script:version = $version
   }
   
-  Exec { .$nuget restore $packagesConfig "$sourceDir\Meetup.Release.sln" } "Error pre-installing NuGet packages"
+  Exec { .$nuget restore $packagesConfig "$sourceDir\Meetup.sln" } "Error pre-installing NuGet packages"
 }
 
 task Headers -description "Updates the headers in *.cs files" {
