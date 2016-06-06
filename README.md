@@ -1,6 +1,6 @@
 ![GeekyTool](https://raw.github.com/dachibox/MeetupApi/master/assets/MeetupApi.png)
 
-[**Meetup.Api**](https://github.com/dachibox/MeetupApi) is a ***portable class library*** for meetup endpoints.
+[**Meetup.Api**](https://github.com/dachibox/MeetupApi) is a ***portable class library*** for meetup.
 
 ## Install Meetup.Api using NuGet
 
