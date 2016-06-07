@@ -1,4 +1,4 @@
-![GeekyTool](https://raw.github.com/dachibox/MeetupApi/master/assets/MeetupApi.png)
+![GeekyTool](https://raw.github.com/dachibox/MeetupApi/master/assets/MeetupApiHeader.png)
 
 [**Meetup.Api**](https://github.com/dachibox/MeetupApi) is a ***portable class library*** for meetup.
 
