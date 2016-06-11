@@ -57,7 +57,7 @@ task Setup -description "Setup environment" {
     $script:version = $version
   }
   
-  Exec { .$nuget restore $packagesConfig "$sourceDir\Meetup.sln" } "Error pre-installing NuGet packages"
+  Exec { .$nuget restore $packagesConfig "$sourceDir\MeetupApi.sln" } "Error pre-installing NuGet packages"
 }
 
 task Headers -description "Updates the headers in *.cs files" {
@@ -134,7 +134,7 @@ task Build -depends Clean, Setup, Version -description "Build all projects and g
   New-Item -Path $binariesDir -ItemType Directory | Out-Null
   New-Item -Path $tempBinariesDir -ItemType Directory | Out-Null
   
-  Exec { msbuild "/t:Clean;Build" /p:Configuration=Release "/p:OutDir=$tempBinariesDir" /p:GenerateProjectSpecificOutputFolder=true /p:StyleCopTreatErrorsAsWarnings=true /m "$sourceDir\Meetup.sln" } "Error building $solutionFile"
+  Exec { msbuild "/t:Clean;Build" /p:Configuration=Release "/p:OutDir=$tempBinariesDir" /p:GenerateProjectSpecificOutputFolder=true /p:StyleCopTreatErrorsAsWarnings=true /m "$sourceDir\MeetupApi.sln" } "Error building $solutionFile"
   
   $projects | % {
     $projectName = $_.Name
