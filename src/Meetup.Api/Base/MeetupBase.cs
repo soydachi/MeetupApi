@@ -1,32 +1,18 @@
-﻿using System;
-using System.Net.Http;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-
-// ReSharper disable once CheckNamespace
+﻿// ReSharper disable once CheckNamespace
 namespace Meetup.Api
 {
+    using System;
+    using System.Net.Http;
+    using System.Text;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Converters;
+
     internal class MeetupBase
     {
-        private string clientId;
-        private string clientSecret;
-
-        public MeetupBase(string clientId, string clientSecret)
-        {
-            this.clientId = clientId;
-            this.clientSecret = clientSecret;
-        }
-
         internal static string BASE_URL = "https://api.meetup.com";
         internal static int SERVER_TIMEOUT = 30000;
-
-
-        internal static string AuthorizeUrl = "https://secure.meetup.com/oauth2/authorize";
-        internal static string RedirectUrl = "http://www.refractored.com/login_success.html";
-        internal static string AccessTokenUrl = "https://secure.meetup.com/oauth2/access";
 
         /// <summary>
         /// Executes HttpClient query asynchronous.
