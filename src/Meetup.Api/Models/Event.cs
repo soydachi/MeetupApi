@@ -62,5 +62,4 @@ namespace Meetup.Api
         [JsonProperty("group")]
         public Group Group { get; set; }
     }
-
 }
