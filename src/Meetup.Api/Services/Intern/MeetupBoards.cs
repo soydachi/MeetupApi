@@ -11,13 +11,11 @@ namespace Meetup.Api
     public class MeetupBoards
     {
         /// <summary>
-        ///  Listings of Group discussion boards
+        /// [Authentication required] Listings of Group discussion boards
         /// </summary>
-        /// <param name="urlName">
-        ///     The urlName path element may be any valid group urlname or domain name
-        /// </param>
+        /// <param name="urlName">The urlName path element may be any valid group urlname or domain name.</param>
         /// <param name="cancellationToken">Cancellation Token</param>
-        /// /<returns>Task&lt;IEnumerable&lt;Board&gt;&gt;.</returns>
+        /// <returns>Task&lt;IEnumerable&lt;Board&gt;&gt;</returns>
         /// <exception cref="HttpRequestException">
         ///     Ops! Something went wrong :S. Please try again, if the error persist contact
         ///     with the developer to fix the issue.

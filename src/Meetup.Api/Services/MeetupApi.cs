@@ -49,7 +49,7 @@ namespace Meetup.Api
         /// </summary>
         /// <param name="cancellationToken">Cancellation Token</param>
         /// <returns>Task&lt;System.Boolean&gt;.</returns>
-        public async Task<bool> GetStatus()
+        public static async Task<bool> GetStatus()
         {
             var queryUrl = new StringBuilder(MeetupBase.BASE_URL);
             queryUrl.Append("/status/");
