@@ -50,9 +50,8 @@
     <Compile Include="Models\Venue.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\Boards\MeetupBoards.cs" />
-    <Compile Include="Services\Event\MeetupEvent.cs" />
-    <Compile Include="Services\IMeetupApi.cs" />
+    <Compile Include="Services\Intern\MeetupBoards.cs" />
+    <Compile Include="Services\Intern\MeetupEvent.cs" />
     <Compile Include="Services\MeetupApi.cs" />
   </ItemGroup>
   <ItemGroup>

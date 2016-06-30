@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Meetup.Api.Annotations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -24,15 +25,14 @@ namespace Meetup.Api
         /// <param name="method">The method .</param>
         /// <returns>Task&lt;T&gt;.</returns>
         internal static async Task<T> ExecuteQueryAsync<T>(StringBuilder queryUrl, CancellationToken cancellationToken, 
-            HttpContent content = null, HttpMethodTypes method = HttpMethodTypes.POST)
+            HttpContent content = null, HttpMethodTypes method = HttpMethodTypes.GET)
         {
-            var authClient = new HttpClient();
-            HttpResponseMessage result;
-
             var timeoutCancellationToken = new CancellationTokenSource(SERVER_TIMEOUT);
 
             using (CancellationTokenSource.CreateLinkedTokenSource(cancellationToken, timeoutCancellationToken.Token))
             {
+                var authClient = new HttpClient();
+                HttpResponseMessage result;
                 switch (method)
                 {
                     case HttpMethodTypes.GET:
@@ -78,8 +78,10 @@ namespace Meetup.Api
         /// <typeparam name="T"></typeparam>
         /// <param name="content">The content.</param>
         /// <returns>Task&lt;T&gt;.</returns>
-        private static async Task<T> ProcessJson<T>(HttpContent content)
+        private static async Task<T> ProcessJson<T>([NotNull] HttpContent content)
         {
+            if (content == null) throw new ArgumentNullException(nameof(content));
+
             var json = await content.ReadAsStringAsync();
             if (json.StartsWith("<!DOCTYPE html>"))
             {
@@ -98,6 +100,8 @@ namespace Meetup.Api
         /// <returns>T</returns>
         private static T ProcessJson<T>(string content)
         {
+            if (string.IsNullOrEmpty(content)) throw new ArgumentException("Argument is null or empty", nameof(content));
+
             var deserializedData = JsonConvert.DeserializeObject<T>(content,
                 new IsoDateTimeConverter {DateTimeFormat = "dd/MM/yyyy"});
             return deserializedData;
