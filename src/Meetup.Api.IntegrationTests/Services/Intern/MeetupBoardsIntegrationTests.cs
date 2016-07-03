@@ -16,5 +16,28 @@ namespace Meetup.Api.IntegrationTests.Services.Intern
 
             Assert.NotNull(result);
         }
+
+        [Test]
+        public async Task Discussion()
+        {
+            var urlName = "CrossDevelopment-Madrid";
+            var bid = "20671181";
+            var did = "49893227";
+
+            var result = await MeetupApi.Boards.Discussion(urlName, bid, did, CancellationToken.None);
+
+            Assert.NotNull(result);
+        }
+
+        [Test]
+        public async Task Discussions()
+        {
+            var urlName = "CrossDevelopment-Madrid";
+            var bid = "20671181";
+
+            var result = await MeetupApi.Boards.Discussions(urlName, bid, CancellationToken.None);
+
+            Assert.NotNull(result);
+        }
     }
 }

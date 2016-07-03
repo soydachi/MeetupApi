@@ -71,7 +71,7 @@ namespace Meetup.Api
         {
             var queryUrl = new StringBuilder(MeetupBase.BASE_URL);
 #if DEBUG
-            queryUrl.Append($"/2/categories?key={SecretKeys.ApiKey}&sign=true");
+            queryUrl.Append($"/2/categories?{SecretKeys.ApiKeyUrl}");
 #else
             queryUrl.Append("/2/categories");
 #endif

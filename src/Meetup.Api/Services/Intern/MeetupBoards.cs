@@ -34,7 +34,7 @@ namespace Meetup.Api
 
             var queryUrl = new StringBuilder(MeetupBase.BASE_URL);
 #if DEBUG
-            queryUrl.Append($"/{urlName}/boards?key={SecretKeys.ApiKey}&sign=true");
+            queryUrl.Append($"/{urlName}/boards?{SecretKeys.ApiKeyUrl}");
 #else
             queryUrl.Append($"/{urlName}/boards");
 #endif
@@ -74,7 +74,12 @@ namespace Meetup.Api
             }
 
             var queryUrl = new StringBuilder(MeetupBase.BASE_URL);
+#if DEBUG
+            queryUrl.Append($"/{urlName}/boards/{bid}/discussions?{SecretKeys.ApiKeyUrl}");
+#else
             queryUrl.Append($"/{urlName}/boards/{bid}/discussions");
+#endif
+
 
             var response =
                 await
@@ -114,8 +119,11 @@ namespace Meetup.Api
             }
 
             var queryUrl = new StringBuilder(MeetupBase.BASE_URL);
+#if DEBUG
+            queryUrl.Append($"/{urlName}/boards/{bid}/discussions/{did}?{SecretKeys.ApiKeyUrl}");
+#else
             queryUrl.Append($"/{urlName}/boards/{bid}/discussions/{did}");
-
+#endif
             var response =
                 await
                     MeetupBase.ExecuteQueryAsync<IEnumerable<Discussion>>(queryUrl, cancellationToken);
