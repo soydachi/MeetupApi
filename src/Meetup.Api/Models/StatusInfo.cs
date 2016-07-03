@@ -1,7 +1,7 @@
 ﻿ // ReSharper disable once CheckNamespace
 namespace Meetup.Api
 {
-    public class Meta
+    public class StatusInfo
     {
         public string status { get; set; }
     }

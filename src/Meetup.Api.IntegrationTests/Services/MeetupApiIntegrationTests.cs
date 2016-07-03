@@ -13,5 +13,13 @@ namespace Meetup.Api.IntegrationTests.Services
 
             Assert.IsTrue(result);
         }
+
+        [Test]
+        public async Task Categories_ReturnData()
+        {
+            var result = await MeetupApi.Categories();
+
+            Assert.IsNotNull(result);
+        }
     }
 }

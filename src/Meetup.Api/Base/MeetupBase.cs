@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Xml;
 using Meetup.Api.Annotations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -56,7 +57,12 @@ namespace Meetup.Api
                     break;
             }
 
-            if (result != null && !result.StatusCode.ToString().ToLower().Equals("badgateway") &&
+            if (result != null && result.StatusCode.ToString().ToLower().Equals("unauthorized"))
+            {
+                throw new HttpRequestException(
+                    "[Unauthorized] MeetupApi is unable to get this request, please re-login for renew your access token.");
+            }
+            else if (result != null && !result.StatusCode.ToString().ToLower().Equals("badgateway") &&
                 !result.StatusCode.ToString().ToLower().Equals("badrequest") &&
                 !result.StatusCode.ToString().ToLower().Equals("serviceunavailable"))
             {
@@ -69,6 +75,9 @@ namespace Meetup.Api
 
         public static async Task<bool> RenewAccessToken()
         {
+#if DEBUG
+            return true;
+#else
             if (MeetupApi.OauthSettings == null)
                 throw new ArgumentException("Initialize MeetupApi with your ClientId and ClientSecret from MeetupApi.ConfigureOauth");
 
@@ -100,6 +109,7 @@ namespace Meetup.Api
             MeetupApi.TokenSettings.RefreshToken = response.RefreshToken;
 
             return true;
+#endif
         }
 
         /// <summary>

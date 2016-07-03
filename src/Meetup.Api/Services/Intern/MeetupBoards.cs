@@ -33,8 +33,11 @@ namespace Meetup.Api
             }
 
             var queryUrl = new StringBuilder(MeetupBase.BASE_URL);
+#if DEBUG
+            queryUrl.Append($"/{urlName}/boards?key={SecretKeys.ApiKey}&sign=true");
+#else
             queryUrl.Append($"/{urlName}/boards");
-
+#endif
             var response =
                 await
                     MeetupBase.ExecuteQueryAsync<IEnumerable<Board>>(queryUrl, cancellationToken);

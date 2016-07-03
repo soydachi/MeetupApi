@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading;
@@ -47,9 +49,8 @@ namespace Meetup.Api
         }
 
         /// <summary>
-        ///     Returns the current API service status
+        /// Returns the current API service status
         /// </summary>
-        /// <param name="cancellationToken">Cancellation Token</param>
         /// <returns>Task&lt;System.Boolean&gt;.</returns>
         public static async Task<bool> GetStatus()
         {
@@ -57,9 +58,31 @@ namespace Meetup.Api
             queryUrl.Append("/status/");
 
             var response =
-                await MeetupBase.ExecuteQueryAsync<Meta>(queryUrl, CancellationToken.None);
+                await MeetupBase.ExecuteQueryAsync<StatusInfo>(queryUrl, CancellationToken.None);
 
             return response?.status == "ok";
+        }
+
+        /// <summary>
+        /// [Authentication required] Returns a list of Meetup group categories
+        /// </summary>
+        /// <returns>Task&lt;IList&lt;Categories&gt;&gt;</returns>
+        public static async Task<Categories> Categories()
+        {
+            var queryUrl = new StringBuilder(MeetupBase.BASE_URL);
+#if DEBUG
+            queryUrl.Append($"/2/categories?key={SecretKeys.ApiKey}&sign=true");
+#else
+            queryUrl.Append("/2/categories");
+#endif
+            var response =
+                await
+                    MeetupBase.ExecuteQueryAsync<Categories>(queryUrl, CancellationToken.None);
+
+            if (response == null)
+                throw new HttpRequestException(
+                    "Ops! Something went wrong :S. Please try again, if the error persist contact with the developer to fix the issue.");
+            return response;
         }
     }
 }
