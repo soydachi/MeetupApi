@@ -14,11 +14,13 @@ namespace Meetup.Api
 
     public class MeetupApi : IMeetupApi
     {
-        public static SettingsOauth settings { get; set; }
+        public static OauthSettings OauthSettings { get; set; }
 
-        public static MeetupEvent Events { get; set; } = new MeetupEvent();
+        public static TokenRoot TokenSettings { get; set; }
 
-        public static  MeetupBoards Boards { get; set; } = new MeetupBoards();
+        public static MeetupEvent Events { get; } = new MeetupEvent();
+
+        public static  MeetupBoards Boards { get; } = new MeetupBoards();
 
         /// <summary>
         /// Should be the first call of the <code>MeetupApi</code>. It configures the intern OauthSettings.
@@ -34,14 +36,14 @@ namespace Meetup.Api
             if (string.IsNullOrWhiteSpace(clientId)) throw new ArgumentException("Argument is null or whitespace", nameof(clientId));
             if (string.IsNullOrWhiteSpace(clientSecret)) throw new ArgumentException("Argument is null or whitespace", nameof(clientSecret));
 
-            settings = new SettingsOauth
+            OauthSettings = new OauthSettings
             {
                 ClientId = clientId,
                 ClientSecret = clientSecret
             };
 
             if (!string.IsNullOrEmpty(redirectUrl) || !string.IsNullOrWhiteSpace(redirectUrl))
-                settings.RedirectUrl = redirectUrl;
+                OauthSettings.RedirectUrl = redirectUrl;
         }
 
         /// <summary>

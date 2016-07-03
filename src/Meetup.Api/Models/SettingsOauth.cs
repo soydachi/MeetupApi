@@ -1,7 +1,7 @@
 ﻿// ReSharper disable once CheckNamespace
 namespace Meetup.Api
 {
-    public class SettingsOauth
+    public class OauthSettings
     {
         public string ClientId { get; set; }
         public string ClientSecret { get; set; }
