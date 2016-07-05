@@ -62,11 +62,38 @@ namespace Meetup.Api {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to [BadRequest] MeetupApi is unable to get this request, please change the params and try again..
+        /// </summary>
+        internal static string BadRequestMessage {
+            get {
+                return ResourceManager.GetString("BadRequestMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ops! Something went wrong :S. Please try again, if the error persist contact with the developer to fix the issue..
         /// </summary>
         internal static string ErrorMessage {
             get {
                 return ResourceManager.GetString("ErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [{0}] MeetupApi is unable to get this request..
+        /// </summary>
+        internal static string HttpClientCommonMessage {
+            get {
+                return ResourceManager.GetString("HttpClientCommonMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [Unauthorized] MeetupApi is unable to get this request, please re-login for renew your access token..
+        /// </summary>
+        internal static string UnauthorizedMessage {
+            get {
+                return ResourceManager.GetString("UnauthorizedMessage", resourceCulture);
             }
         }
     }
