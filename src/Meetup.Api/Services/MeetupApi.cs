@@ -80,8 +80,7 @@ namespace Meetup.Api
                     MeetupBase.ExecuteQueryAsync<Categories>(queryUrl, CancellationToken.None);
 
             if (response == null)
-                throw new HttpRequestException(
-                    "Ops! Something went wrong :S. Please try again, if the error persist contact with the developer to fix the issue.");
+                throw new HttpRequestException(Resources.ErrorMessage);
             return response;
         }
 
