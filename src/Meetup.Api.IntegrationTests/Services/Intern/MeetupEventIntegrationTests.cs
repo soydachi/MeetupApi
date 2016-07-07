@@ -13,7 +13,7 @@ namespace Meetup.Api.IntegrationTests.Services.Intern
             var urlName = "CrossDevelopment-Madrid";
             var id = "231590907";
 
-            var result = await MeetupApi.Events.ByIdAsync(urlName, id, CancellationToken.None);
+            var result = await MeetupApi.Events.Event(urlName, id, CancellationToken.None);
 
             Assert.That(result.Id == id && result.Group.UrlName == urlName);
         }

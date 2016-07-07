@@ -34,8 +34,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Models\Fee.cs" />
-    <Compile Include="Models\City.cs" />
+    <Compile Include="Models\Responses\Events.cs" />
+    <Compile Include="Models\Responses\Discusssions.cs" />
+    <Compile Include="Models\Responses\Cities.cs" />
+    <Compile Include="Models\Responses\Categories.cs" />
+    <Compile Include="Models\Enums\PublishStatus.cs" />
+    <Compile Include="Models\Enums\VenueVisibility.cs" />
+    <Compile Include="Models\Enums\Waitlisting.cs" />
+    <Compile Include="Models\Root\Fee.cs" />
+    <Compile Include="Models\Root\City.cs" />
+    <Compile Include="Models\PushModels\CreateEventModel.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -44,24 +52,24 @@
     <Compile Include="SecretKeys.cs" />
     <Compile Include="Base\MeetupBase.cs" />
     <Compile Include="Base\HttpMethodTypes.cs" />
-    <Compile Include="Models\Board.cs" />
-    <Compile Include="Models\Category.cs" />
-    <Compile Include="Models\Discusssion.cs" />
-    <Compile Include="Models\LastPost.cs" />
-    <Compile Include="Models\LatestReply.cs" />
-    <Compile Include="Models\Member.cs" />
-    <Compile Include="Models\Meta.cs" />
-    <Compile Include="Models\Photo.cs" />
+    <Compile Include="Models\Root\Board.cs" />
+    <Compile Include="Models\Root\Category.cs" />
+    <Compile Include="Models\Responses\Discusssion.cs" />
+    <Compile Include="Models\Root\LastPost.cs" />
+    <Compile Include="Models\Root\LatestReply.cs" />
+    <Compile Include="Models\Root\Member.cs" />
+    <Compile Include="Models\Root\Meta.cs" />
+    <Compile Include="Models\Root\Photo.cs" />
     <Compile Include="Models\TokenRoot.cs" />
     <Compile Include="Models\SettingsOauth.cs" />
-    <Compile Include="Models\Event.cs" />
-    <Compile Include="Models\Group.cs" />
-    <Compile Include="Models\GroupPhoto.cs" />
-    <Compile Include="Models\Organizer.cs" />
-    <Compile Include="Models\StartedBy.cs" />
-    <Compile Include="Models\StatusInfo.cs" />
-    <Compile Include="Models\Topic.cs" />
-    <Compile Include="Models\Venue.cs" />
+    <Compile Include="Models\Root\Event.cs" />
+    <Compile Include="Models\Root\Group.cs" />
+    <Compile Include="Models\Root\GroupPhoto.cs" />
+    <Compile Include="Models\Root\Organizer.cs" />
+    <Compile Include="Models\Root\StartedBy.cs" />
+    <Compile Include="Models\Root\StatusInfo.cs" />
+    <Compile Include="Models\Root\Topic.cs" />
+    <Compile Include="Models\Root\Venue.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Intern\MeetupBoards.cs" />
@@ -85,6 +93,7 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

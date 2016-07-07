@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 // ReSharper disable once CheckNamespace
 namespace Meetup.Api
@@ -62,11 +61,5 @@ namespace Meetup.Api
 
         [JsonProperty("group")]
         public Group Group { get; set; }
-    }
-
-    public class Events
-    {
-        public List<Event> results { get; set; }
-        public Meta meta { get; set; }
     }
 }
