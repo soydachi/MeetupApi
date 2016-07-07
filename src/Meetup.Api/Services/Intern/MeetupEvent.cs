@@ -153,7 +153,7 @@ namespace Meetup.Api
             var hosts = content.Hosts[0];
             for (var i = 1; i < content.Hosts.Length; i++)
             {
-                hosts += $",{content.Hosts[i]}";
+                hosts += $",{content.Hosts[i]}"; 
             }
 
             var htmlContent = new FormUrlEncodedContent(new[]
