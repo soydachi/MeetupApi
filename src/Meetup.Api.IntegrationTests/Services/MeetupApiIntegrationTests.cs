@@ -21,5 +21,13 @@ namespace Meetup.Api.IntegrationTests.Services
 
             Assert.IsNotNull(result);
         }
+
+        [Test]
+        public async Task Cities()
+        {
+            var result = await MeetupApi.Cities("es", 40.416881, -3.703435, 25);
+
+            Assert.IsNotNull(result);
+        }
     }
 }

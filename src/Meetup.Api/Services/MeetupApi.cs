@@ -84,6 +84,30 @@ namespace Meetup.Api
             return response;
         }
 
+        /// <summary>
+        /// Returns Meetup cities. This method supports search by latitude/longitude/radius, by country/state, by query term/zip, or a 
+        /// combination of all of these. Location-only searches by lat and lon return all cities within a radius of the provided coordinates. 
+        /// Searches with a query return up to 10 cities matching the term, and can be sorted by size or distance to a given coordinate. 
+        /// 'smart' ordering can be used to return the match(es) with the highest member_count, unless a smaller size match exists nearby the given 
+        /// coordinates. Query searches are supported for country but not country and state
+        /// </summary>
+        /// <param name="country">A valid country code</param>
+        /// <param name="lat">Latitude to search</param>
+        /// <param name="lon">Longitude to search</param>
+        /// <param name="radius">When searching by lat/lon only, specify a radius to search (default 50 miles)</param>
+        /// <returns>Task&lt;IList&lt;Cities&gt;&gt;</returns>
+        public static async Task<Cities> Cities(string country, double lat, double lon, int radius)
+        {
+            var queryUrl = new StringBuilder(MeetupBase.BASE_URL);
+            queryUrl.Append($"/2/cities?&country={country}&lon={lon}&radius={radius}&lat={lat}");
 
+            var response =
+                await
+                    MeetupBase.ExecuteQueryAsync<Cities>(queryUrl, CancellationToken.None);
+
+            if (response == null)
+                throw new HttpRequestException(Resources.ErrorMessage);
+            return response;
+        }
     }
 }
