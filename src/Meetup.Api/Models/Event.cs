@@ -66,10 +66,7 @@ namespace Meetup.Api
 
     public class Events
     {
-        public class RootObject
-        {
-            public List<Event> results { get; set; }
-            public Meta meta { get; set; }
-        }
+        public List<Event> results { get; set; }
+        public Meta meta { get; set; }
     }
 }
