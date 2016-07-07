@@ -34,5 +34,8 @@ namespace Meetup.Api
 
         [JsonProperty("country")]
         public string Country { get; set; }
+
+        [JsonProperty("localized_country_name")]
+        public string LocalizedCountryName { get; set; }
     }
 }
