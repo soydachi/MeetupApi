@@ -9,13 +9,13 @@ namespace Meetup.Api.UnitTests.Services.Intern
         [Test]
         public void ByIdAsync_NoUrlNameProvided_ShouldThrowArgumentException()
         {
-            Assert.That(async () => await MeetupApi.Events.ByIdAsync("", "231590907", CancellationToken.None), Throws.ArgumentException);
+            Assert.That(async () => await MeetupApi.Events.Event("", "231590907", CancellationToken.None), Throws.ArgumentException);
         }
 
         [Test]
         public void ByIdAsync_NoIdProvided_ShouldThrowArgumentException()
         {
-            Assert.That(async () => await MeetupApi.Events.ByIdAsync("CrossDevelopment-Madrid", "", CancellationToken.None), Throws.ArgumentException);
+            Assert.That(async () => await MeetupApi.Events.Event("CrossDevelopment-Madrid", "", CancellationToken.None), Throws.ArgumentException);
         }
     }
 }
