@@ -1,21 +1,21 @@
-﻿using System.Threading;
-using NUnit.Framework;
+﻿using System;
+using System.Threading;
+using Xunit;
 
 namespace Meetup.Api.UnitTests.Services.Intern
 {
-    [TestFixture]
     public class MeetupEventTest
     {
-        [Test]
+        [Fact]
         public void ByIdAsync_NoUrlNameProvided_ShouldThrowArgumentException()
         {
-            Assert.That(async () => await MeetupApi.Events.Event("", "231590907", CancellationToken.None), Throws.ArgumentException);
+            Assert.ThrowsAsync<ArgumentException>(async () => await MeetupApi.Events.Event("", "231590907", CancellationToken.None));
         }
 
-        [Test]
+        [Fact]
         public void ByIdAsync_NoIdProvided_ShouldThrowArgumentException()
         {
-            Assert.That(async () => await MeetupApi.Events.Event("CrossDevelopment-Madrid", "", CancellationToken.None), Throws.ArgumentException);
+            Assert.ThrowsAsync<ArgumentException>(async () => await MeetupApi.Events.Event("CrossDevelopment-Madrid", "", CancellationToken.None));
         }
     }
 }
