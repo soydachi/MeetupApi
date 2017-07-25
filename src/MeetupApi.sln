@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meetup.Api", "Meetup.Api\Me
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meetup.Api.UnitTests", "Meetup.Api.UnitTests\Meetup.Api.UnitTests.csproj", "{22DF076B-E848-47D6-890D-1918D499427C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meetup.Api.IntegrationTests", "Meetup.Api.IntegrationTests\Meetup.Api.IntegrationTests.csproj", "{567A9865-46C0-4637-8F53-448C9566942F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{22DF076B-E848-47D6-890D-1918D499427C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22DF076B-E848-47D6-890D-1918D499427C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22DF076B-E848-47D6-890D-1918D499427C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{567A9865-46C0-4637-8F53-448C9566942F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{567A9865-46C0-4637-8F53-448C9566942F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{567A9865-46C0-4637-8F53-448C9566942F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{567A9865-46C0-4637-8F53-448C9566942F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
