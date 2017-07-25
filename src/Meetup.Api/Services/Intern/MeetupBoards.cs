@@ -28,8 +28,7 @@ namespace Meetup.Api
 
             if (!await MeetupBase.RenewAccessToken())
             {
-                throw new HttpRequestException(
-                    "MeetupApi is unable to get the listings of group discussion boards, please re-login for renew your access token.");
+                throw new HttpRequestException(Resources.ErrorMessage);
             }
 
             var queryUrl = new StringBuilder(MeetupBase.BASE_URL);
@@ -43,8 +42,7 @@ namespace Meetup.Api
                     MeetupBase.ExecuteQueryAsync<IEnumerable<Board>>(queryUrl, cancellationToken);
 
             if (response == null)
-                throw new HttpRequestException(
-                    "Ops! Something went wrong :S. Please try again, if the error persist contact with the developer to fix the issue.");
+                throw new HttpRequestException(Resources.ErrorMessage);
             return response;
         }
 
@@ -69,8 +67,7 @@ namespace Meetup.Api
 
             if (!await MeetupBase.RenewAccessToken())
             {
-                throw new HttpRequestException(
-                    "MeetupApi is unable to get the listings of group discussions, please re-login for renew your access token.");
+                throw new HttpRequestException(Resources.ErrorMessage);
             }
 
             var queryUrl = new StringBuilder(MeetupBase.BASE_URL);
@@ -86,8 +83,7 @@ namespace Meetup.Api
                     MeetupBase.ExecuteQueryAsync<IEnumerable<Discusssions>>(queryUrl, cancellationToken);
 
             if (response == null)
-                throw new HttpRequestException(
-                    "Ops! Something went wrong :S. Please try again, if the error persist contact with the developer to fix the issue.");
+                throw new HttpRequestException(Resources.ErrorMessage);
             return response;
         }
 
@@ -114,8 +110,7 @@ namespace Meetup.Api
 
             if (!await MeetupBase.RenewAccessToken())
             {
-                throw new HttpRequestException(
-                    "MeetupApi is unable to get the listing group discussion posts, please re-login for renew your access token.");
+                throw new HttpRequestException(Resources.ErrorMessage);
             }
 
             var queryUrl = new StringBuilder(MeetupBase.BASE_URL);
@@ -129,8 +124,7 @@ namespace Meetup.Api
                     MeetupBase.ExecuteQueryAsync<IEnumerable<Discussion>>(queryUrl, cancellationToken);
 
             if (response == null)
-                throw new HttpRequestException(
-                    "Ops! Something went wrong :S. Please try again, if the error persist contact with the developer to fix the issue.");
+                throw new HttpRequestException(Resources.ErrorMessage);
             return response;
         }
     }

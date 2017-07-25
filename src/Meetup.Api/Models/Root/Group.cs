@@ -68,5 +68,12 @@ namespace Meetup.Api
 
         [JsonProperty("group_photo")]
         public GroupPhoto GroupPhoto { get; set; }
+
+        [JsonProperty("group_lon")]
+        public double GroupLongitude { get; set; }
+
+        [JsonProperty("group_lat")]
+        public double GroupLatitude { get; set; }
+
     }
 }

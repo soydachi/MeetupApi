@@ -1,13 +1,12 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using NUnit.Framework;
+using Xunit;
 
 namespace Meetup.Api.IntegrationTests.Services.Intern
 {
-    [TestFixture]
     public class MeetupBoardsIntegrationTests
     {
-        [Test]
+		[Fact]
         public async Task All()
         {
             var urlName = "CrossDevelopment-Madrid";
@@ -17,7 +16,7 @@ namespace Meetup.Api.IntegrationTests.Services.Intern
             Assert.NotNull(result);
         }
 
-        [Test]
+        [Fact]
         public async Task Discussion()
         {
             var urlName = "CrossDevelopment-Madrid";
@@ -29,7 +28,7 @@ namespace Meetup.Api.IntegrationTests.Services.Intern
             Assert.NotNull(result);
         }
 
-        [Test]
+        [Fact]
         public async Task Discussions()
         {
             var urlName = "CrossDevelopment-Madrid";

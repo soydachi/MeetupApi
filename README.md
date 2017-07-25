@@ -79,16 +79,18 @@ You can find your ApiKey value here: https://secure.meetup.com/es-ES/meetup_api/
 
 > Don't give away your API key. Your key exposes the Meetup groups you've joined, **even private groups.** It's personal and belongs to you, like your account password. If you do want a third party service to be able to use your key temporarily and give them the key, you can reset it by clicking the button below. Once reset, your old key is invalidated and no longer works with our API.
 
+- [x] **Pull request** will only **accepted** from `/dev` branch
+
 ## Author
 
 | [![Dachi](https://avatars1.githubusercontent.com/u/1771785?v=3&s=130)](https://github.com/dachibox) |
-|---|---|
+|---|
 | [Dachi Gogotchuri](https://github.com/dachibox) |
 
 ## Contributors
 
 | [Contributor photo]() |
-|---|---|
+|---|
 | [Contributor Name]() |
 
 ## License
@@ -96,7 +98,7 @@ You can find your ApiKey value here: https://secure.meetup.com/es-ES/meetup_api/
 [MIT License](https://github.com/dachibox/GeekyTool/master/LICENSE)
 
 
-    Copyright (c) 2016 Dachi Gogotchuri
+    Copyright (c) 2017 Dachi Gogotchuri
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal

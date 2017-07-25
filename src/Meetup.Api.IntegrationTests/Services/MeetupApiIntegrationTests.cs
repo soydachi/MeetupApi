@@ -1,25 +1,32 @@
 ﻿using System.Threading.Tasks;
-using NUnit.Framework;
+using Xunit;
 
 namespace Meetup.Api.IntegrationTests.Services
 {
-    [TestFixture]
     public class MeetupApiIntegrationTests
     {
-        [Test]
+        [Fact]
         public async Task GetStatus_ReturnTrue()
         {
             var result = await MeetupApi.GetStatus();
 
-            Assert.IsTrue(result);
+            Assert.True(result);
         }
 
-        [Test]
+		[Fact]
         public async Task Categories_ReturnData()
         {
             var result = await MeetupApi.Categories();
 
-            Assert.IsNotNull(result);
+            Assert.NotNull(result);
+        }
+
+		[Fact]
+        public async Task Cities()
+        {
+            var result = await MeetupApi.Cities("es", 40.416881, -3.703435, 25);
+
+            Assert.NotNull(result);
         }
     }
 }
