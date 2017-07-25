@@ -98,7 +98,7 @@ You can find your ApiKey value here: https://secure.meetup.com/es-ES/meetup_api/
 [MIT License](https://github.com/dachibox/GeekyTool/master/LICENSE)
 
 
-    Copyright (c) 2016 Dachi Gogotchuri
+    Copyright (c) 2017 Dachi Gogotchuri
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
