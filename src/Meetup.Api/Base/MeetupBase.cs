@@ -69,7 +69,7 @@ namespace Meetup.Api
         public static async Task<bool> RenewAccessToken()
         {
 #if DEBUG
-            return true;
+            return await Task.FromResult(true);
 #else
             if (MeetupApi.OauthSettings == null)
                 throw new ArgumentException("Initialize MeetupApi with your ClientId and ClientSecret from MeetupApi.ConfigureOauth");
