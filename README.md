@@ -84,13 +84,13 @@ You can find your ApiKey value here: https://secure.meetup.com/es-ES/meetup_api/
 ## Author
 
 | [![Dachi](https://avatars1.githubusercontent.com/u/1771785?v=3&s=130)](https://github.com/dachibox) |
-|---|---|
+|---|
 | [Dachi Gogotchuri](https://github.com/dachibox) |
 
 ## Contributors
 
 | [Contributor photo]() |
-|---|---|
+|---|
 | [Contributor Name]() |
 
 ## License
