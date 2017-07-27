@@ -14,6 +14,19 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
+    <PackOnBuild>true</PackOnBuild>
+    <PackageIconUrl>https://github.com/soydachi/MeetupApi/blob/dev/assets/MeetupApi.png?raw=true</PackageIconUrl>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <PackageLicenseUrl>https://github.com/soydachi/MeetupApi/blob/dev/LICENSE</PackageLicenseUrl>
+    <Owners>Dachi Gogotchuri</Owners>
+    <PackageProjectUrl>https://github.com/soydachi/MeetupApi</PackageProjectUrl>
+    <Summary>.NET C# wrapper for meetup api</Summary>
+    <PackageTags>meetup, api, meetupapi, meetup.api</PackageTags>
+    <Title>Meetup.Api</Title>
+    <PackageId>Meetup.Api</PackageId>
+    <Authors>Dachi Gogotchuri</Authors>
+    <Description>.NET C# wrapper for meetup api</Description>
+    <PackageVersion>0.1.0</PackageVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
