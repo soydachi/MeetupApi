@@ -1,8 +1,9 @@
 ﻿{
   "dependencies": {
-    "Newtonsoft.Json": "9.0.1",
-    "NETStandard.Library": "1.6.0",
-    "Microsoft.NETCore.Portable.Compatibility": "1.0.1"
+    "Microsoft.NETCore.Portable.Compatibility": "1.0.1",
+    "NETStandard.Library": "1.6.1",
+    "Newtonsoft.Json": "10.0.3",
+    "NuGet.Build.Packaging": "0.1.324"
   },
   "frameworks": {
     "netstandard1.5": {}
