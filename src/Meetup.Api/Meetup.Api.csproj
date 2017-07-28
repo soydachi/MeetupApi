@@ -1,109 +1,16 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{18D8CC57-5DB1-4642-97A0-04E5CD0012FB}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Meetup.Api</RootNamespace>
-    <AssemblyName>Meetup.Api</AssemblyName>
-    <DefaultLanguage>en-US</DefaultLanguage>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
-    <PackOnBuild>true</PackOnBuild>
-    <PackageIconUrl>https://github.com/soydachi/MeetupApi/blob/dev/assets/MeetupApi.png?raw=true</PackageIconUrl>
-    <NeutralLanguage>en-US</NeutralLanguage>
-    <PackageLicenseUrl>https://github.com/soydachi/MeetupApi/blob/dev/LICENSE</PackageLicenseUrl>
-    <Owners>Dachi Gogotchuri</Owners>
-    <PackageProjectUrl>https://github.com/soydachi/MeetupApi</PackageProjectUrl>
-    <Summary>.NET C# wrapper for meetup api</Summary>
-    <PackageTags>meetup, api, meetupapi, meetup.api</PackageTags>
-    <Title>Meetup.Api</Title>
-    <PackageId>Meetup.Api</PackageId>
-    <Authors>Dachi Gogotchuri</Authors>
-    <Description>.NET C# wrapper for meetup api</Description>
-    <PackageVersion>0.1.0</PackageVersion>
+    <TargetFramework>netstandard1.4</TargetFramework>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Compile Include="Models\Responses\Events.cs" />
-    <Compile Include="Models\Responses\Discusssions.cs" />
-    <Compile Include="Models\Responses\Cities.cs" />
-    <Compile Include="Models\Responses\Categories.cs" />
-    <Compile Include="Models\Enums\PublishStatus.cs" />
-    <Compile Include="Models\Enums\VenueVisibility.cs" />
-    <Compile Include="Models\Enums\Waitlisting.cs" />
-    <Compile Include="Models\Root\Fee.cs" />
-    <Compile Include="Models\Root\City.cs" />
-    <Compile Include="Models\PushModels\CreateEventModel.cs" />
-    <Compile Include="Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="SecretKeys.cs" />
-    <Compile Include="Base\MeetupBase.cs" />
-    <Compile Include="Base\HttpMethodTypes.cs" />
-    <Compile Include="Models\Root\Board.cs" />
-    <Compile Include="Models\Root\Category.cs" />
-    <Compile Include="Models\Responses\Discusssion.cs" />
-    <Compile Include="Models\Root\LastPost.cs" />
-    <Compile Include="Models\Root\LatestReply.cs" />
-    <Compile Include="Models\Root\Member.cs" />
-    <Compile Include="Models\Root\Meta.cs" />
-    <Compile Include="Models\Root\Photo.cs" />
-    <Compile Include="Models\TokenRoot.cs" />
-    <Compile Include="Models\SettingsOauth.cs" />
-    <Compile Include="Models\Root\Event.cs" />
-    <Compile Include="Models\Root\Group.cs" />
-    <Compile Include="Models\Root\GroupPhoto.cs" />
-    <Compile Include="Models\Root\Organizer.cs" />
-    <Compile Include="Models\Root\StartedBy.cs" />
-    <Compile Include="Models\Root\StatusInfo.cs" />
-    <Compile Include="Models\Root\Topic.cs" />
-    <Compile Include="Models\Root\Venue.cs" />
-    <Compile Include="Properties\Annotations.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\Intern\MeetupBoards.cs" />
-    <Compile Include="Services\Intern\MeetupEvent.cs" />
-    <Compile Include="Services\MeetupApi.cs" />
+    <None Remove="Services\.DS_Store" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="project.json" />
+    <None Include="Resources.resx" />
   </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

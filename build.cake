@@ -1,28 +1,11 @@
-// // Target - The task you want to start. Runs the Default task if not specified.
-// var target = Argument("Target", "Default");
-// // Configuration - The build configuration (Debug/Release) to use.
-// // 1. If command line parameter parameter passed, use that.
-// // 2. Otherwise if an Environment variable exists, use that.
-// var configuration = 
-//     HasArgument("Configuration") ? Argument("Configuration") :
-//     EnvironmentVariable("Configuration") != null ? EnvironmentVariable("Configuration") : "Release";
-// // The build number to use in the version number of the built NuGet packages.
-// // There are multiple ways this value can be passed, this is a common pattern.
-// // 1. If command line parameter parameter passed, use that.
-// // 2. Otherwise if running on AppVeyor, get it's build number.
-// // 3. Otherwise if running on Travis CI, get it's build number.
-// // 4. Otherwise if an Environment variable exists, use that.
-// // 5. Otherwise default the build number to 0.
-// var buildNumber =
-//     HasArgument("BuildNumber") ? Argument<int>("BuildNumber") :
-//     EnvironmentVariable("BuildNumber") != null ? int.Parse(EnvironmentVariable("BuildNumber")) : 0;
-
 var target = Argument("target", "Default");
-var configuration = Argument("configuration", "Release");
+var configuration = Argument("configuration", "Debug");
 var buildNumber = 0;
  
 // A directory path to an Artifacts directory.
 var artifactsDirectory = Directory("./artifacts");
+var sourceDir          = Directory("./src");
+var testsDir           = Directory("./tests");
  
 // Deletes the contents of the Artifacts folder if it should contain anything from a previous build.
 Task("Clean")
@@ -39,7 +22,7 @@ Task("Restore")
     .IsDependentOn("Clean")
     .Does(() =>
     {
-        DotNetCoreRestore("src/MeetupApi.sln");
+        DotNetCoreRestore("./src/MeetupApi.sln");
     });
  
 // Find all csproj projects and build them using the build configuration specified as an argument.
@@ -50,6 +33,7 @@ Task("Restore")
         var projects = GetFiles("./**/*.csproj");
         foreach(var project in projects)
         {
+            Information(project.GetDirectory().FullPath);
             DotNetCoreBuild(
                 project.GetDirectory().FullPath,
                 new DotNetCoreBuildSettings()
@@ -68,15 +52,12 @@ Task("Test")
         var projects = GetFiles("./tests/**/*.csproj");
         foreach(var project in projects)
         {
+            Information(project.ToString());
             DotNetCoreTest(
-                project.GetDirectory().FullPath,
+                project.ToString(),
                 new DotNetCoreTestSettings()
                 {
-                    ArgumentCustomization = args => args
-                        .Append("-xml")
-                        .Append(artifactsDirectory.Path.CombineWithFilePath(project.GetFilenameWithoutExtension()).FullPath + ".xml"),
-                    Configuration = configuration,
-                    NoBuild = true
+                    Configuration = configuration
                 });
         }
     });

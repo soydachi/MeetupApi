@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 12
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meetup.Api", "Meetup.Api\Meetup.Api.csproj", "{18D8CC57-5DB1-4642-97A0-04E5CD0012FB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meetup.Api", "Meetup.Api\Meetup.Api.csproj", "{181AA153-0C08-46D2-BE7A-69A8CE50DD07}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meetup.Api.IntegrationTests", "..\test\Meetup.Api.IntegrationTests\Meetup.Api.IntegrationTests.csproj", "{63FCB71B-7D55-4151-B58C-4FD794A4D96D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meetup.Api.IntegrationTests", "..\tests\Meetup.Api.IntegrationTests\Meetup.Api.IntegrationTests.csproj", "{35A7682D-38DA-4105-826F-087704342D5D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meetup.Api.UnitTests", "..\test\Meetup.Api.UnitTests\Meetup.Api.UnitTests.csproj", "{31D09891-EB2C-4338-8362-0A1D1D33AE43}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meetup.Api.UnitTests", "..\tests\Meetup.Api.UnitTests\Meetup.Api.UnitTests.csproj", "{378CD002-9424-462F-AE0C-41911865DED6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,18 +13,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{18D8CC57-5DB1-4642-97A0-04E5CD0012FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{18D8CC57-5DB1-4642-97A0-04E5CD0012FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{18D8CC57-5DB1-4642-97A0-04E5CD0012FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{18D8CC57-5DB1-4642-97A0-04E5CD0012FB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{63FCB71B-7D55-4151-B58C-4FD794A4D96D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{63FCB71B-7D55-4151-B58C-4FD794A4D96D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{63FCB71B-7D55-4151-B58C-4FD794A4D96D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{63FCB71B-7D55-4151-B58C-4FD794A4D96D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{31D09891-EB2C-4338-8362-0A1D1D33AE43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{31D09891-EB2C-4338-8362-0A1D1D33AE43}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{31D09891-EB2C-4338-8362-0A1D1D33AE43}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{31D09891-EB2C-4338-8362-0A1D1D33AE43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{181AA153-0C08-46D2-BE7A-69A8CE50DD07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{181AA153-0C08-46D2-BE7A-69A8CE50DD07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{181AA153-0C08-46D2-BE7A-69A8CE50DD07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{181AA153-0C08-46D2-BE7A-69A8CE50DD07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35A7682D-38DA-4105-826F-087704342D5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35A7682D-38DA-4105-826F-087704342D5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35A7682D-38DA-4105-826F-087704342D5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35A7682D-38DA-4105-826F-087704342D5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{378CD002-9424-462F-AE0C-41911865DED6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{378CD002-9424-462F-AE0C-41911865DED6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{378CD002-9424-462F-AE0C-41911865DED6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{378CD002-9424-462F-AE0C-41911865DED6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
