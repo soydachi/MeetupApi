@@ -64,9 +64,25 @@ Task("Test")
     .Does(() =>
     {
         if (AppVeyor.IsRunningOnAppVeyor)
-        {            
+        {   
+            Information(
+            @"Environment:
+            ApiUrl: {0}
+            Configuration: {1}
+            JobId: {2}
+            JobName: {3}
+            Platform: {4}
+            ScheduledBuild: {5}",
+            AppVeyor.Environment.ApiUrl,
+            AppVeyor.Environment.Configuration,
+            AppVeyor.Environment.JobId,
+            AppVeyor.Environment.JobName,
+            AppVeyor.Environment.Platform,
+            AppVeyor.Environment.ScheduledBuild
+        );
+
             TransformTextFile(sourceDir.Combine("Meetup.Api/SecretKeys.cs").ToString(), "*{", "}*")
-            .WithToken("Secret", AppVeyor.AppVeyorEnvironmentInfo.GetEnvironmentString("SecrectKey"))
+            .WithToken("Secret", AppVeyor.Environment.Configuration("SecrectKey"))
             .Save(sourceDir.Combine("Meetup.Api/SecretKeys.cs").ToString());
         }
 
