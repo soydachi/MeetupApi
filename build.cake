@@ -66,7 +66,7 @@ Task("Test")
         if (AppVeyor.IsRunningOnAppVeyor)
         {            
             TransformTextFile(sourceDir.Combine("Meetup.Api/SecretKeys.cs").ToString(), "*{", "}*")
-            .WithToken("Secret", AppVeyor.Environment.SecrectKey)
+            .WithToken("Secret", AppVeyor.Environment.GetEnvironmentVariable("SecrectKey"))
             .Save(sourceDir.Combine("Meetup.Api/SecretKeys.cs").ToString());
         }
 
