@@ -1,11 +1,25 @@
-var target = Argument("target", "Default");
-var configuration = Argument("configuration", "Debug");
-var buildNumber = 0;
+// #tool "nuget:?package=TextTransform
+
+// Target - The task you want to start. Runs the Default task if not specified.
+var target = Argument("Target", "Default");
+// Configuration - The build configuration (Debug/Release) to use.
+var configuration = Argument("configuration", "Release");
+// The build number to use in the version number of the built NuGet packages.
+// There are multiple ways this value can be passed, this is a common pattern.
+// 1. If command line parameter parameter passed, use that.
+// 2. Otherwise if running on AppVeyor, get it's build number.
+// 3. Otherwise if running on Travis CI, get it's build number.
+// 4. Otherwise if an Environment variable exists, use that.
+// 5. Otherwise default the build number to 0.
+var buildNumber =
+    HasArgument("BuildNumber") ? Argument<int>("BuildNumber") :
+    AppVeyor.IsRunningOnAppVeyor ? AppVeyor.Environment.Build.Number :
+    EnvironmentVariable("BuildNumber") != null ? int.Parse(EnvironmentVariable("BuildNumber")) : 0;
  
 // A directory path to an Artifacts directory.
 var artifactsDirectory = Directory("./artifacts");
-var sourceDir          = Directory("./src");
-var testsDir           = Directory("./tests");
+var sourceDir          = new DirectoryPath("./src");
+var testsDir           = new DirectoryPath("./tests");
  
 // Deletes the contents of the Artifacts folder if it should contain anything from a previous build.
 Task("Clean")
@@ -49,6 +63,13 @@ Task("Test")
     .IsDependentOn("Build")
     .Does(() =>
     {
+        if (AppVeyor.IsRunningOnAppVeyor)
+        {            
+            TransformTextFile(sourceDir.Combine("Meetup.Api/SecretKeys.cs").ToString(), "*{", "}*")
+            .WithToken("Secret", AppVeyor.Environment.SecrectKey)
+            .Save(sourceDir.Combine("Meetup.Api/SecretKeys.cs").ToString());
+        }
+
         var projects = GetFiles("./tests/**/*.csproj");
         foreach(var project in projects)
         {
