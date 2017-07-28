@@ -82,7 +82,7 @@ Task("Test")
         );
 
             TransformTextFile(sourceDir.Combine("Meetup.Api/SecretKeys.cs").ToString(), "*{", "}*")
-            .WithToken("Secret", AppVeyor.Environment.Configuration("SecrectKey"))
+            .WithToken("Secret", "")
             .Save(sourceDir.Combine("Meetup.Api/SecretKeys.cs").ToString());
         }
 
