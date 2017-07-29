@@ -2,10 +2,15 @@
 
 [**Meetup.Api**](https://github.com/dachibox/MeetupApi) is a ***portable class library*** for meetup.
 
-## Install Meetup.Api using NuGet [![Build status](https://ci.appveyor.com/api/projects/status/jhp6tns3n84ytmk0?svg=true)](https://ci.appveyor.com/project/dachibox/meetupapi)
+master | dev
+-------|----
+[![Build status](https://ci.appveyor.com/api/projects/status/jhp6tns3n84ytmk0?svg=true)](https://ci.appveyor.com/project/dachibox/meetupapi) | [![Build status](https://ci.appveyor.com/api/projects/status/jhp6tns3n84ytmk0?svg=true)](https://ci.appveyor.com/project/dachibox/meetupapi)
 
+## Install Meetup.Api using NuGet
 
-Comming soon...
+Package             | State | Description
+--------------------|-------|--------------------------------------
+Comming soon... | Comming soon... | Comming soon...
 
 ## Table of contents
 
