@@ -9,7 +9,7 @@ namespace Meetup.Api.IntegrationTests.Services.Intern
         [Fact]
         public async Task ByIdAsync()
         {
-            var urlName = "CrossDevelopment-Madrid";
+            var urlName = "CrossDvlup";
             var id = "231590907";
 
             var result = await MeetupApi.Events.Event(urlName, id, CancellationToken.None);
