@@ -1,10 +1,10 @@
-![GeekyTool](https://raw.github.com/dachibox/MeetupApi/master/assets/MeetupApiHeader.png)
+![GeekyTool](https://raw.github.com/soydachi/MeetupApi/master/assets/MeetupApiHeader.png)
 
-[**Meetup.Api**](https://github.com/dachibox/MeetupApi) is a ***portable class library*** for meetup.
+[**Meetup.Api**](https://github.com/soydachi/MeetupApi) is a ***portable class library*** for meetup.
 
 master | dev
 -------|----
-[![Build status](https://ci.appveyor.com/api/projects/status/jhp6tns3n84ytmk0?svg=true)](https://ci.appveyor.com/project/dachibox/meetupapi) | [![Build status](https://ci.appveyor.com/api/projects/status/jhp6tns3n84ytmk0?svg=true)](https://ci.appveyor.com/project/dachibox/meetupapi)
+[![Build status](https://ci.appveyor.com/api/projects/status/jhp6tns3n84ytmk0?svg=true)](https://ci.appveyor.com/project/soydachi/meetupapi) | [![Build status](https://ci.appveyor.com/api/projects/status/jhp6tns3n84ytmk0?svg=true)](https://ci.appveyor.com/project/soydachi/meetupapi)
 
 ## Install Meetup.Api using NuGet
 
@@ -14,19 +14,19 @@ Comming soon... | Comming soon... | Comming soon...
 
 ## Table of contents
 
-1. [Documentation](https://github.com/dachibox/MeetupApi#documentation)
-2. [Example](https://github.com/dachibox/MeetupApi#example)
-3. [How to contribute](https://github.com/dachibox/MeetupApi#how-to-contribute)
-    - [C# Coding Style](https://github.com/dachibox/MeetupApi#1-c#-coding-style)
-    - [How to order functions in file or class](https://github.com/dachibox/MeetupApi#2-how-to-order-functions-in-file-or-class)
-    - [Getting Started](https://github.com/dachibox/MeetupApi#3-getting-started)
-4. [Author](https://github.com/dachibox/MeetupApi#author)
-5. [Contributors](https://github.com/dachibox/MeetupApi#contributors)
-5. [License](https://github.com/dachibox/MeetupApi#license)
+1. [Documentation](https://github.com/soydachi/MeetupApi#documentation)
+2. [Example](https://github.com/soydachi/MeetupApi#example)
+3. [How to contribute](https://github.com/soydachi/MeetupApi#how-to-contribute)
+    - [C# Coding Style](https://github.com/soydachi/MeetupApi#1-c#-coding-style)
+    - [How to order functions in file or class](https://github.com/soydachi/MeetupApi#2-how-to-order-functions-in-file-or-class)
+    - [Getting Started](https://github.com/soydachi/MeetupApi#3-getting-started)
+4. [Author](https://github.com/soydachi/MeetupApi#author)
+5. [Contributors](https://github.com/soydachi/MeetupApi#contributors)
+5. [License](https://github.com/soydachi/MeetupApi#license)
 
 ## Documentation
 
-See [wiki](https://github.com/dachibox/MeetupApi/wiki) _(under construction...)_
+See [wiki](https://github.com/soydachi/MeetupApi/wiki) _(under construction...)_
 
 ## Example
 
@@ -89,9 +89,9 @@ You can find your ApiKey value here: https://secure.meetup.com/es-ES/meetup_api/
 
 ## Author
 
-| [![Dachi](https://avatars1.githubusercontent.com/u/1771785?v=3&s=130)](https://github.com/dachibox) |
+| [![Dachi](https://avatars1.githubusercontent.com/u/1771785?v=3&s=130)](https://github.com/soydachi) |
 |---|
-| [Dachi Gogotchuri](https://github.com/dachibox) |
+| [Dachi Gogotchuri](https://github.com/soydachi) |
 
 ## Contributors
 
@@ -101,10 +101,10 @@ You can find your ApiKey value here: https://secure.meetup.com/es-ES/meetup_api/
 
 ## License
 
-[MIT License](https://github.com/dachibox/GeekyTool/master/LICENSE)
+[MIT License](https://github.com/soydachi/MeetupApi/master/LICENSE)
 
 
-    Copyright (c) 2017 Dachi Gogotchuri
+    Copyright (c) 2019 Dachi Gogotchuri
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
