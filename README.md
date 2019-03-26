@@ -101,7 +101,7 @@ You can find your ApiKey value here: https://secure.meetup.com/es-ES/meetup_api/
 
 ## License
 
-[MIT License](https://github.com/soydachi/MeetupApi/master/LICENSE)
+[MIT License](https://github.com/soydachi/MeetupApi/blob/master/LICENSE)
 
 
     Copyright (c) 2019 Dachi Gogotchuri
