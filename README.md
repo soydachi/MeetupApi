@@ -85,7 +85,7 @@ You can find your ApiKey value here: https://secure.meetup.com/es-ES/meetup_api/
 
 > Don't give away your API key. Your key exposes the Meetup groups you've joined, **even private groups.** It's personal and belongs to you, like your account password. If you do want a third party service to be able to use your key temporarily and give them the key, you can reset it by clicking the button below. Once reset, your old key is invalidated and no longer works with our API.
 
-- [x] **Pull request** will only **accepted** from `/dev` branch
+- [x] **Pull request** will only **accepted** from `/develop` branch
 
 ## Author
 
