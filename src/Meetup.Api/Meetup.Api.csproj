@@ -1,7 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
+    <LangVersion>latestmajor</LangVersion>
+    <Nullable>disable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>

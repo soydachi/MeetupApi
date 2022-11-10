@@ -1,5 +1,4 @@
-﻿﻿using System;
-namespace Meetup.Api
+﻿namespace Meetup.Api
 {
 	internal static class SecretKeys
 	{
