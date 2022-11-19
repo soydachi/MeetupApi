@@ -9,7 +9,7 @@ namespace Meetup.Api.IntegrationTests.Services.Intern
 		[Fact]
         public async Task All()
         {
-            var urlName = "CrossDevelopment-Madrid";
+            var urlName = "CrossDvlup";
 
             var result = await MeetupApi.Boards.All(urlName, CancellationToken.None);
 
@@ -19,7 +19,7 @@ namespace Meetup.Api.IntegrationTests.Services.Intern
         [Fact]
         public async Task Discussion()
         {
-            var urlName = "CrossDevelopment-Madrid";
+            var urlName = "CrossDvlup";
             var bid = "20671181";
             var did = "49893227";
 
@@ -31,7 +31,7 @@ namespace Meetup.Api.IntegrationTests.Services.Intern
         [Fact]
         public async Task Discussions()
         {
-            var urlName = "CrossDevelopment-Madrid";
+            var urlName = "CrossDvlup";
             var bid = "20671181";
 
             var result = await MeetupApi.Boards.Discussions(urlName, bid, CancellationToken.None);
