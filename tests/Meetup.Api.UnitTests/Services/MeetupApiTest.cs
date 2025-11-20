@@ -25,8 +25,8 @@ namespace Meetup.Api.UnitTests.Services
         [Fact]
         public async Task GetStatusAsync_ReturnsTrue_WhenStatusIsOk()
         {
-            _handlerMock.SetupRequest(HttpMethod.Get, "https://api.meetup.com/status/")
-                        .ReturnsResponse(HttpStatusCode.OK, "{\"status\": \"ok\"}", "application/json");
+            _handlerMock.SetupRequest(HttpMethod.Post, "https://api.meetup.com/gql-ext")
+                        .ReturnsResponse(HttpStatusCode.OK, "{\"data\": {\"healthCheck\": {\"status\": \"ok\"}}}", "application/json");
 
             var result = await _client.GetStatusAsync();
 
@@ -34,10 +34,10 @@ namespace Meetup.Api.UnitTests.Services
         }
 
         [Fact]
-        public async Task GetStatusAsync_ReturnsFalse_WhenStatusIsNotOk()
+        public async Task GetStatusAsync_ReturnsFalse_WhenExceptionOccurs()
         {
-            _handlerMock.SetupRequest(HttpMethod.Get, "https://api.meetup.com/status/")
-                        .ReturnsResponse(HttpStatusCode.OK, "{\"status\": \"error\"}", "application/json");
+            _handlerMock.SetupRequest(HttpMethod.Post, "https://api.meetup.com/gql-ext")
+                        .Throws(new HttpRequestException());
 
             var result = await _client.GetStatusAsync();
 
@@ -45,10 +45,10 @@ namespace Meetup.Api.UnitTests.Services
         }
 
         [Fact]
-        public async Task GetStatusAsync_ReturnsFalse_WhenExceptionOccurs()
+        public async Task GetStatusAsync_ReturnsFalse_WhenGraphQLErrorOccurs()
         {
-            _handlerMock.SetupRequest(HttpMethod.Get, "https://api.meetup.com/status/")
-                        .Throws(new HttpRequestException());
+            _handlerMock.SetupRequest(HttpMethod.Post, "https://api.meetup.com/gql-ext")
+                        .ReturnsResponse(HttpStatusCode.OK, "{\"errors\": [{\"message\": \"error\"}]}", "application/json");
 
             var result = await _client.GetStatusAsync();
 

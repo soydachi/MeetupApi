@@ -74,31 +74,32 @@ public class MyMeetupService
 
 ## Usage Examples
 
+### Execute Any GraphQL Query
+The library provides full flexibility with `ExecuteQueryAsync`:
+
+```csharp
+var query = @"
+    query {
+        self {
+            id
+            name
+            email
+        }
+    }";
+
+var result = await _client.ExecuteQueryAsync<dynamic>(query);
+```
+
 ### Get Group Events
 ```csharp
 var events = await _client.GetEventsAsync("CrossDevelopment-Madrid");
-foreach (var meetup in events.Results)
-{
-    Console.WriteLine($"Event: {meetup.Name} at {meetup.Time}");
-}
+// Note: Current implementation returns placeholder. Full mapping coming soon.
 ```
 
-### Get Discussion Boards
+### Health Check
 ```csharp
-var boards = await _client.GetBoardsAsync("CrossDevelopment-Madrid");
-```
-
-### Create an Event
-```csharp
-var newEvent = new CreateEventModel
-{
-    Name = "Monthly Meetup",
-    Description = "Join us for...",
-    Time = DateTimeOffset.UtcNow.AddDays(7).ToUnixTimeMilliseconds(),
-    Duration = 7200000 // 2 hours
-};
-
-await _client.CreateEventAsync("CrossDevelopment-Madrid", "Monthly Meetup", newEvent);
+var isHealthy = await _client.GetStatusAsync();
+Console.WriteLine($"API Status: {(isHealthy ? "Healthy" : "Unhealthy")}");
 ```
 
 ## Contributing

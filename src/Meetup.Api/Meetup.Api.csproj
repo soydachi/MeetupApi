@@ -5,6 +5,14 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Dachi Gogotchuri</Authors>
+    <Description>A modern, asynchronous .NET library for the Meetup GraphQL API.</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/soydachi/MeetupApi</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/soydachi/MeetupApi</RepositoryUrl>
+    <PackageTags>meetup;api;graphql;dotnet;csharp</PackageTags>
+    <Version>1.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
