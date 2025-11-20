@@ -48,7 +48,7 @@ namespace Meetup.Api
 
         public async Task<Cities> GetCitiesAsync(string country, double lat, double lon, int radius, CancellationToken cancellationToken = default)
         {
-            var query = $"/2/cities?country={country}&lon={lon}&radius={radius}&lat={lat}";
+            var query = FormattableString.Invariant($"/2/cities?country={country}&lon={lon}&radius={radius}&lat={lat}");
             return await _httpClient.GetFromJsonAsync<Cities>(query, cancellationToken)
                    ?? throw new HttpRequestException("Failed to retrieve cities.");
         }
@@ -223,6 +223,7 @@ namespace Meetup.Api
              
              var keyValues = new List<KeyValuePair<string, string>>
              {
+                 new("name", name),
                  new("description", content.Description ?? ""),
                  new("duration", content.Duration.ToString()),
                  new("guest_limit", content.GuestLimit.ToString()),

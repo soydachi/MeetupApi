@@ -66,5 +66,34 @@ namespace Meetup.Api.IntegrationTests.Services
                  // Ignore failure if it's due to auth
             }
         }
+
+        [Fact]
+        public async Task GetSelf_SmokeTest()
+        {
+            try
+            {
+                var result = await _client.GetSelfAsync();
+                // Without auth, this might return null or throw, but we just want to ensure the method call works
+                // and doesn't crash the runtime.
+            }
+            catch (HttpRequestException)
+            {
+                // Expected without valid token
+            }
+        }
+
+        [Fact]
+        public async Task GetEvents_SmokeTest()
+        {
+            try
+            {
+                var result = await _client.GetEventsAsync("CrossDevelopment-Madrid");
+                // Without auth, this might return null or throw
+            }
+            catch (HttpRequestException)
+            {
+                // Expected without valid token
+            }
+        }
     }
 }
