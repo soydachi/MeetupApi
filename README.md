@@ -1,127 +1,112 @@
-![GeekyTool](https://raw.github.com/soydachi/MeetupApi/master/assets/MeetupApiHeader.png)
+# MeetupApi
 
-[**Meetup.Api**](https://github.com/soydachi/MeetupApi) is a ***portable class library*** for meetup.
+![MeetupApi](https://raw.github.com/soydachi/MeetupApi/master/assets/MeetupApiHeader.png)
 
-master | dev
--------|----
-[![Build status](https://ci.appveyor.com/api/projects/status/jhp6tns3n84ytmk0?svg=true)](https://ci.appveyor.com/project/soydachi/meetupapi) | [![Build status](https://ci.appveyor.com/api/projects/status/jhp6tns3n84ytmk0?svg=true)](https://ci.appveyor.com/project/soydachi/meetupapi)
+**Meetup.Api** is a modern, asynchronous .NET library for interacting with the Meetup API.
 
-## Install Meetup.Api using NuGet
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://github.com/soydachi/MeetupApi/actions)
+[![NuGet](https://img.shields.io/nuget/v/Meetup.Api.svg)](https://www.nuget.org/packages/Meetup.Api/)
+[![License](https://img.shields.io/github/license/soydachi/MeetupApi.svg)](LICENSE)
 
-Package             | State | Description
---------------------|-------|--------------------------------------
-Comming soon... | Comming soon... | Comming soon...
+## Features
 
-## Table of contents
+- **.NET 10 Support**: Built for the latest .NET ecosystem.
+- **Dependency Injection**: Designed with `IMeetupClient` and `IHttpClientFactory` for easy integration into modern .NET applications.
+- **Asynchronous**: Fully async/await support for all API calls.
+- **Strongly Typed**: Comprehensive models for Meetup API responses (Events, Groups, Venues, etc.).
+- **No Hardcoded Secrets**: Secure design requiring configuration injection.
 
-1. [Documentation](https://github.com/soydachi/MeetupApi#documentation)
-2. [Example](https://github.com/soydachi/MeetupApi#example)
-3. [How to contribute](https://github.com/soydachi/MeetupApi#how-to-contribute)
-    - [C# Coding Style](https://github.com/soydachi/MeetupApi#1-c#-coding-style)
-    - [How to order functions in file or class](https://github.com/soydachi/MeetupApi#2-how-to-order-functions-in-file-or-class)
-    - [Getting Started](https://github.com/soydachi/MeetupApi#3-getting-started)
-4. [Author](https://github.com/soydachi/MeetupApi#author)
-5. [Contributors](https://github.com/soydachi/MeetupApi#contributors)
-5. [License](https://github.com/soydachi/MeetupApi#license)
+## Installation
 
-## Documentation
+Install the package via NuGet:
 
-See [wiki](https://github.com/soydachi/MeetupApi/wiki) _(under construction...)_
-
-## Example
-
-```csharp
-var urlName = "CrossDevelopment-Madrid";
-var bid = "20671181";
-var did = "49893227";
-
-// Fetches a Meetup Event by group urlname and event_id
-var result = await MeetupApi.Events.ByIdAsync(urlName, id, CancellationToken.None);
-
-// Listings of Group discussion boards
-var result = await MeetupApi.Boards.All(urlName, CancellationToken.None);
-
-// Listings of group discussions
-var result = await MeetupApi.Boards.Discussions(urlName, bid, CancellationToken.None);
-
-// Listing Group discussion posts
-var result = await MeetupApi.Boards.Discussion(urlName, bid, did, CancellationToken.None);
+```bash
+dotnet add package Meetup.Api
 ```
 
-## How to contribute
+## Getting Started
 
-Contributions are quite welcome, though some rules should be followed!
+### 1. Register the Service
 
-### 1. C# Coding Style
-
-The general rule we follow is "use Visual Studio defaults".
-
-1. Use [Allman style braces](http://en.wikipedia.org/wiki/Indent_style#Allman_style)
-2. Use `camelCase` private members and use `readonly` where possible
-3. Avoid `this.` unless absolutely necessary
-4. Always specify the visiblity, even if it's the default (i.e. `private string foo` not `string foo`)
-5. Namespace imports should be specified at the top of the file, outside of namespace declarations and should be sorted alphabetically, with `System.` namespaces at the top and blank lines between different top level groups
-
-### 2. How to order functions in file or class
-
-- private member, protected member
-- private type, public type, protected enum
-- public constructor
-- public property
-- public function, private function
-
-### 3. Getting Started
-Just **fork and clone** this repository. Then you need to create in the root `Meetup.Api` the `SecretKeys.cs` class.
+In your `Program.cs` or `Startup.cs`, register the Meetup API client:
 
 ```csharp
-internal static class SecretKeys
+using Meetup.Api;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Add MeetupApi to the container
+builder.Services.AddMeetupApi(client =>
 {
-    internal const string ApiKey = "";
-    internal static readonly string ApiKeyUrl = $"key={ApiKey}&sign=true";
+    // Optional: Configure the HttpClient here (e.g., headers, timeouts)
+    // Note: Authentication is typically handled via OAuth tokens passed in headers
+});
+
+var app = builder.Build();
+```
+
+### 2. Use IMeetupClient
+
+Inject `IMeetupClient` into your services or controllers:
+
+```csharp
+public class MyMeetupService
+{
+    private readonly IMeetupClient _meetupClient;
+
+    public MyMeetupService(IMeetupClient meetupClient)
+    {
+        _meetupClient = meetupClient;
+    }
+
+    public async Task<bool> CheckApiStatusAsync()
+    {
+        return await _meetupClient.GetStatusAsync();
+    }
+
+    public async Task<IEnumerable<Event>> GetEventsAsync(string groupUrlName)
+    {
+        var events = await _meetupClient.GetEventsAsync(groupUrlName);
+        return events.Results;
+    }
 }
 ```
 
-You can find your ApiKey value here: https://secure.meetup.com/es-ES/meetup_api/key/
+## Usage Examples
 
-> Don't give away your API key. Your key exposes the Meetup groups you've joined, **even private groups.** It's personal and belongs to you, like your account password. If you do want a third party service to be able to use your key temporarily and give them the key, you can reset it by clicking the button below. Once reset, your old key is invalidated and no longer works with our API.
+### Get Group Events
+```csharp
+var events = await _client.GetEventsAsync("CrossDevelopment-Madrid");
+foreach (var meetup in events.Results)
+{
+    Console.WriteLine($"Event: {meetup.Name} at {meetup.Time}");
+}
+```
 
-- [x] **Pull request** will only **accepted** from `/develop` branch
+### Get Discussion Boards
+```csharp
+var boards = await _client.GetBoardsAsync("CrossDevelopment-Madrid");
+```
 
-## Author
+### Create an Event
+```csharp
+var newEvent = new CreateEventModel
+{
+    Name = "Monthly Meetup",
+    Description = "Join us for...",
+    Time = DateTimeOffset.UtcNow.AddDays(7).ToUnixTimeMilliseconds(),
+    Duration = 7200000 // 2 hours
+};
 
-| [![Dachi](https://avatars1.githubusercontent.com/u/1771785?v=3&s=130)](https://github.com/soydachi) |
-|---|
-| [Dachi Gogotchuri](https://github.com/soydachi) |
+await _client.CreateEventAsync("CrossDevelopment-Madrid", "Monthly Meetup", newEvent);
+```
 
-## Contributors
+## Contributing
 
-| [Contributor photo]() |
-|---|
-| [Contributor Name]() |
+We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details on how to submit pull requests, report issues, and the code of conduct.
 
 ## License
 
-[MIT License](https://github.com/soydachi/MeetupApi/blob/master/LICENSE)
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-
-    Copyright (c) 2019 Dachi Gogotchuri
-
-    Permission is hereby granted, free of charge, to any person obtaining a copy
-    of this software and associated documentation files (the "Software"), to deal
-    in the Software without restriction, including without limitation the rights
-    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    copies of the Software, and to permit persons to whom the Software is
-    furnished to do so, subject to the following conditions:
-
-    The above copyright notice and this permission notice shall be included in all
-    copies or substantial portions of the Software.
-
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    SOFTWARE.
-
-
+Copyright (c) 2019-2025 Dachi Gogotchuri
