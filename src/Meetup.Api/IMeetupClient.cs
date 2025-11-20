@@ -17,5 +17,10 @@ namespace Meetup.Api
         Task<Event> GetEventAsync(string urlName, string id, CancellationToken cancellationToken = default);
         Task<Events> CreateEventAsync(string groupUrl, string name, CreateEventModel content, CancellationToken cancellationToken = default);
         Task<T> ExecuteQueryAsync<T>(string query, object? variables = null, CancellationToken cancellationToken = default) where T : class;
+        
+        // New GraphQL methods
+        Task<Group?> GetGroupAsync(string urlName, CancellationToken cancellationToken = default);
+        Task<Event?> GetEventByIdAsync(string eventId, CancellationToken cancellationToken = default);
+        Task<Member?> GetSelfAsync(CancellationToken cancellationToken = default);
     }
 }

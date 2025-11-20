@@ -109,12 +109,17 @@ namespace Meetup.Api
                                     dateTime
                                     description
                                     eventUrl
+                                    duration
+                                    going
                                     venue {
                                         id
                                         name
                                         address
                                         city
+                                        state
                                         country
+                                        lat
+                                        lng
                                     }
                                 }
                             }
@@ -123,16 +128,79 @@ namespace Meetup.Api
                 }";
 
             var variables = new { urlname = groupUrl };
-            var response = await ExecuteQueryAsync<object>(query, variables, cancellationToken);
+            var response = await ExecuteQueryAsync<GraphQL.GroupByUrlnameResponse>(query, variables, cancellationToken);
             
-            // Note: We need to map the GraphQL response to the existing Events model.
-            // This is a simplified mapping. In a real scenario, we'd likely update the models to match GQL structure directly
-            // or use a mapper. For now, we'll construct the Events object manually to satisfy the interface.
+            // Map GraphQL response to existing Events model
+            var events = new Events
+            {
+                results = new List<Event>(),
+                meta = new Meta()
+            };
+
+            if (response?.GroupByUrlname?.UpcomingEvents?.Edges != null)
+            {
+                foreach (var edge in response.GroupByUrlname.UpcomingEvents.Edges)
+                {
+                    if (edge.Node == null) continue;
+
+                    var gqlEvent = edge.Node;
+                    var mappedEvent = new Event
+                    {
+                        Id = gqlEvent.Id,
+                        Name = gqlEvent.Title,
+                        Description = gqlEvent.Description,
+                        EventUrl = gqlEvent.EventUrl,
+                        Time = ParseDateTimeToUnixMillis(gqlEvent.DateTime),
+                        Duration = ParseDurationToMillis(gqlEvent.Duration),
+                        YesRSVPCount = gqlEvent.Going,
+                        Venue = gqlEvent.Venue != null ? new Venue
+                        {
+                            Id = int.TryParse(gqlEvent.Venue.Id, out var venueId) ? venueId : 0,
+                            Name = gqlEvent.Venue.Name,
+                            Address1 = gqlEvent.Venue.Address,
+                            City = gqlEvent.Venue.City,
+                            State = gqlEvent.Venue.State,
+                            Country = gqlEvent.Venue.Country,
+                            Latitude = gqlEvent.Venue.Lat ?? 0,
+                            Longitude = gqlEvent.Venue.Lng ?? 0
+                        } : null
+                    };
+
+                    events.results.Add(mappedEvent);
+                }
+            }
+
+            return events;
+        }
+
+        private static long ParseDateTimeToUnixMillis(string? dateTime)
+        {
+            if (string.IsNullOrWhiteSpace(dateTime)) return 0;
             
-            // TODO: Implement proper mapping logic here.
-            // For this step, we are establishing the pattern.
+            if (DateTimeOffset.TryParse(dateTime, out var dt))
+            {
+                return dt.ToUnixTimeMilliseconds();
+            }
             
-            return new Events(); 
+            return 0;
+        }
+
+        private static int ParseDurationToMillis(string? duration)
+        {
+            if (string.IsNullOrWhiteSpace(duration)) return 0;
+            
+            // Duration format is typically ISO 8601 (e.g., "PT2H" for 2 hours)
+            // Simple parsing for common cases
+            if (duration.StartsWith("PT") && duration.EndsWith("H"))
+            {
+                var hours = duration.Replace("PT", "").Replace("H", "");
+                if (int.TryParse(hours, out var h))
+                {
+                    return h * 60 * 60 * 1000; // Convert hours to milliseconds
+                }
+            }
+            
+            return 0;
         }
 
         public async Task<Event> GetEventAsync(string urlName, string id, CancellationToken cancellationToken = default)
@@ -214,6 +282,151 @@ namespace Meetup.Api
             }
 
             return gqlResponse.Data;
+        }
+
+        public async Task<Group?> GetGroupAsync(string urlName, CancellationToken cancellationToken = default)
+        {
+            if (string.IsNullOrWhiteSpace(urlName)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(urlName));
+
+            var query = @"
+                query ($urlname: String!) {
+                    groupByUrlname(urlname: $urlname) {
+                        id
+                        name
+                        urlname
+                        description
+                        link
+                        city
+                        state
+                        country
+                        timezone
+                        memberships {
+                            count
+                        }
+                        groupPhoto {
+                            id
+                            baseUrl
+                        }
+                    }
+                }";
+
+            var variables = new { urlname = urlName };
+            var response = await ExecuteQueryAsync<GraphQL.GroupDetailsResponse>(query, variables, cancellationToken);
+
+            if (response?.GroupByUrlname == null) return null;
+
+            var gqlGroup = response.GroupByUrlname;
+            return new Group
+            {
+                Id = int.TryParse(gqlGroup.Id, out var groupId) ? groupId : 0,
+                Name = gqlGroup.Name,
+                Description = gqlGroup.Description,
+                Link = gqlGroup.Link,
+                City = gqlGroup.City,
+                State = gqlGroup.State,
+                Country = gqlGroup.Country,
+                Timezone = gqlGroup.Timezone,
+                Members = gqlGroup.Memberships?.Count ?? 0,
+                GroupPhoto = gqlGroup.GroupPhoto != null ? new GroupPhoto
+                {
+                    PhotoId = int.TryParse(gqlGroup.GroupPhoto.Id, out var photoId) ? photoId : 0,
+                    PhotoLink = gqlGroup.GroupPhoto.BaseUrl
+                } : null
+            };
+        }
+
+        public async Task<Event?> GetEventByIdAsync(string eventId, CancellationToken cancellationToken = default)
+        {
+            if (string.IsNullOrWhiteSpace(eventId)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(eventId));
+
+            var query = @"
+                query ($id: ID!) {
+                    event(id: $id) {
+                        id
+                        title
+                        dateTime
+                        description
+                        eventUrl
+                        duration
+                        going
+                        venue {
+                            id
+                            name
+                            address
+                            city
+                            state
+                            country
+                            lat
+                            lng
+                        }
+                    }
+                }";
+
+            var variables = new { id = eventId };
+            var response = await ExecuteQueryAsync<GraphQL.EventByIdResponse>(query, variables, cancellationToken);
+
+            if (response?.Event == null) return null;
+
+            var gqlEvent = response.Event;
+            return new Event
+            {
+                Id = gqlEvent.Id,
+                Name = gqlEvent.Title,
+                Description = gqlEvent.Description,
+                EventUrl = gqlEvent.EventUrl,
+                Time = ParseDateTimeToUnixMillis(gqlEvent.DateTime),
+                Duration = ParseDurationToMillis(gqlEvent.Duration),
+                YesRSVPCount = gqlEvent.Going,
+                Venue = gqlEvent.Venue != null ? new Venue
+                {
+                    Id = int.TryParse(gqlEvent.Venue.Id, out var venueId) ? venueId : 0,
+                    Name = gqlEvent.Venue.Name,
+                    Address1 = gqlEvent.Venue.Address,
+                    City = gqlEvent.Venue.City,
+                    State = gqlEvent.Venue.State,
+                    Country = gqlEvent.Venue.Country,
+                    Latitude = gqlEvent.Venue.Lat ?? 0,
+                    Longitude = gqlEvent.Venue.Lng ?? 0
+                } : null
+            };
+        }
+
+        public async Task<Member?> GetSelfAsync(CancellationToken cancellationToken = default)
+        {
+            var query = @"
+                query {
+                    self {
+                        id
+                        name
+                        email
+                        bio
+                        city
+                        state
+                        country
+                        memberPhoto {
+                            id
+                            baseUrl
+                        }
+                    }
+                }";
+
+            var response = await ExecuteQueryAsync<GraphQL.SelfResponse>(query, null, cancellationToken);
+
+            if (response?.Self == null) return null;
+
+            var gqlMember = response.Self;
+            return new Member
+            {
+                Id = int.TryParse(gqlMember.Id, out var memberId) ? memberId : 0,
+                Name = gqlMember.Name,
+                City = gqlMember.City,
+                State = gqlMember.State,
+                Country = gqlMember.Country,
+                Photo = gqlMember.MemberPhoto != null ? new Photo
+                {
+                    Thumb = gqlMember.MemberPhoto.BaseUrl
+                } : null
+            };
         }
     }
 }

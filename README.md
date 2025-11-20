@@ -93,13 +93,43 @@ var result = await _client.ExecuteQueryAsync<dynamic>(query);
 ### Get Group Events
 ```csharp
 var events = await _client.GetEventsAsync("CrossDevelopment-Madrid");
-// Note: Current implementation returns placeholder. Full mapping coming soon.
+foreach (var evt in events.results)
+{
+    Console.WriteLine($"Event: {evt.Name} at {DateTimeOffset.FromUnixTimeMilliseconds(evt.Time)}");
+}
 ```
 
 ### Health Check
 ```csharp
 var isHealthy = await _client.GetStatusAsync();
 Console.WriteLine($"API Status: {(isHealthy ? "Healthy" : "Unhealthy")}");
+```
+
+### Get Group Details
+```csharp
+var group = await _client.GetGroupAsync("CrossDevelopment-Madrid");
+if (group != null)
+{
+    Console.WriteLine($"Group: {group.Name}, Members: {group.Members}");
+}
+```
+
+### Get Single Event by ID
+```csharp
+var event = await _client.GetEventByIdAsync("event-id-123");
+if (event != null)
+{
+    Console.WriteLine($"Event: {event.Name}");
+}
+```
+
+### Get Authenticated User Profile
+```csharp
+var user = await _client.GetSelfAsync();
+if (user != null)
+{
+    Console.WriteLine($"User: {user.Name} from {user.City}");
+}
 ```
 
 ## Contributing
