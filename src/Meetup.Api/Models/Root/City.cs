@@ -1,38 +1,38 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 // ReSharper disable once CheckNamespace
 namespace Meetup.Api
 {
     public class City
     {
-        [JsonProperty("zip")]
-        public string Zip { get; set; }
+        [JsonPropertyName("zip")]
+        public string? Zip { get; set; }
 
-        [JsonProperty("country")]
-        public string Country { get; set; }
+        [JsonPropertyName("country")]
+        public string? Country { get; set; }
 
-        [JsonProperty("localized_country_name")]
-        public string LocalizedCountryName { get; set; }
+        [JsonPropertyName("localized_country_name")]
+        public string? LocalizedCountryName { get; set; }
 
-        [JsonProperty("distance")]
+        [JsonPropertyName("distance")]
         public double Distance { get; set; }
 
-        [JsonProperty("city")]
-        public string CityName { get; set; }
+        [JsonPropertyName("city")]
+        public string? CityName { get; set; }
 
-        [JsonProperty("lon")]
+        [JsonPropertyName("lon")]
         public double Longitude { get; set; }
 
-        [JsonProperty("ranking")]
+        [JsonPropertyName("ranking")]
         public int Ranking { get; set; }
 
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public int Id { get; set; }
 
-        [JsonProperty("member_count")]
+        [JsonPropertyName("member_count")]
         public int MemberCount { get; set; }
 
-        [JsonProperty("lat")]
+        [JsonPropertyName("lat")]
         public double Latitude { get; set; }
     }
 }

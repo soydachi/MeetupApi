@@ -1,44 +1,44 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 // ReSharper disable once CheckNamespace
 namespace Meetup.Api
 {
     public class Meta
     {
-        [JsonProperty("lon")]
-        public string Longitude { get; set; }
+        [JsonPropertyName("lon")]
+        public string? Longitude { get; set; }
 
-        [JsonProperty("count")]
+        [JsonPropertyName("count")]
         public int Count { get; set; }
 
-        [JsonProperty("link")]
-        public string Link { get; set; }
+        [JsonPropertyName("link")]
+        public string? Link { get; set; }
 
-        [JsonProperty("next")]
-        public string Next { get; set; }
+        [JsonPropertyName("next")]
+        public string? Next { get; set; }
 
-        [JsonProperty("total_count")]
+        [JsonPropertyName("total_count")]
         public int TotalCount { get; set; }
 
-        [JsonProperty("url")]
-        public string Url { get; set; }
+        [JsonPropertyName("url")]
+        public string? Url { get; set; }
 
-        [JsonProperty("id")]
-        public string Id { get; set; }
+        [JsonPropertyName("id")]
+        public string? Id { get; set; }
 
-        [JsonProperty("title")]
-        public string Title { get; set; }
+        [JsonPropertyName("title")]
+        public string? Title { get; set; }
 
-        [JsonProperty("updated")]
+        [JsonPropertyName("updated")]
         public long Updated { get; set; }
 
-        [JsonProperty("description")]
-        public string Description { get; set; }
+        [JsonPropertyName("description")]
+        public string? Description { get; set; }
 
-        [JsonProperty("method")]
-        public string Method { get; set; }
+        [JsonPropertyName("method")]
+        public string? Method { get; set; }
 
-        [JsonProperty("lat")]
-        public string Latitude { get; set; }
+        [JsonPropertyName("lat")]
+        public string? Latitude { get; set; }
     }
 }

@@ -1,65 +1,65 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 // ReSharper disable once CheckNamespace
 namespace Meetup.Api
 {
     public class Event
     {
-        [JsonProperty("status")]
-        public string Status { get; set; }
+        [JsonPropertyName("status")]
+        public string? Status { get; set; }
 
-        [JsonProperty("visibility")]
-        public string Visibility { get; set; }
+        [JsonPropertyName("visibility")]
+        public string? Visibility { get; set; }
 
-        [JsonProperty("maybe_rsvp_count")]
+        [JsonPropertyName("maybe_rsvp_count")]
         public int MaybeRSVPCount { get; set; }
 
-        [JsonProperty("venue")]
-        public Venue Venue { get; set; }
+        [JsonPropertyName("venue")]
+        public Venue? Venue { get; set; }
 
-        [JsonProperty("id")]
-        public string Id { get; set; }
+        [JsonPropertyName("id")]
+        public string? Id { get; set; }
 
-        [JsonProperty("utc_offset")]
+        [JsonPropertyName("utc_offset")]
         public int UTCOffset { get; set; }
 
-        [JsonProperty("duration")]
+        [JsonPropertyName("duration")]
         public int Duration { get; set; }
 
-        [JsonProperty("time")]
+        [JsonPropertyName("time")]
         public long Time { get; set; }
 
-        [JsonProperty("waitlist_count")]
+        [JsonPropertyName("waitlist_count")]
         public int WaitlistCount { get; set; }
 
-        [JsonProperty("announced")]
+        [JsonPropertyName("announced")]
         public bool Announced { get; set; }
 
-        [JsonProperty("updated")]
+        [JsonPropertyName("updated")]
         public long Updated { get; set; }
 
-        [JsonProperty("yes_rsvp_count")]
+        [JsonPropertyName("yes_rsvp_count")]
         public int YesRSVPCount { get; set; }
 
-        [JsonProperty("created")]
+        [JsonPropertyName("created")]
         public long Created { get; set; }
 
-        [JsonProperty("event_url")]
-        public string EventUrl { get; set; }
+        [JsonPropertyName("event_url")]
+        public string? EventUrl { get; set; }
 
-        [JsonProperty("description")]
-        public string Description { get; set; }
+        [JsonPropertyName("description")]
+        public string? Description { get; set; }
 
-        [JsonProperty("how_to_find_us")]
-        public string HowToFindUs { get; set; }
+        [JsonPropertyName("how_to_find_us")]
+        public string? HowToFindUs { get; set; }
 
-        [JsonProperty("name")]
-        public string Name { get; set; }
+        [JsonPropertyName("name")]
+        public string? Name { get; set; }
 
-        [JsonProperty("headcount")]
+        [JsonPropertyName("headcount")]
         public int HeadCount { get; set; }
 
-        [JsonProperty("group")]
-        public Group Group { get; set; }
+        [JsonPropertyName("group")]
+        public Group? Group { get; set; }
     }
 }

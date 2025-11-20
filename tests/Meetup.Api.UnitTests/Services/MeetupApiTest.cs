@@ -1,28 +1,58 @@
 ﻿using System;
+using System.Net;
+using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
+using Moq;
+using Moq.Contrib.HttpClient;
 using Xunit;
 
 namespace Meetup.Api.UnitTests.Services
 {
-    public class MeetupApiTest
+    public class MeetupClientTests
     {
-        [Fact]
-        public void ConfigureOauth_NoClientIdProvided_ShouldThrowArgumentException() => Assert.Throws<ArgumentException>(delegate { MeetupApi.ConfigureOauth("", "ClientSecrect", "RedirectUrl"); });
+        private readonly Mock<HttpMessageHandler> _handlerMock;
+        private readonly MeetupClient _client;
 
-        [Fact]
-        public void ConfigureOauth_NoClientSecretProvided_ShouldThrowArgumentException() => Assert.Throws<ArgumentException>(delegate { MeetupApi.ConfigureOauth("ClientId", "", "RedirectUrl"); });
-
-        [Fact]
-        public void ConfigureOauth_NoRedirectUrlProvided_ShouldReturnDefaultValue()
+        public MeetupClientTests()
         {
-            MeetupApi.ConfigureOauth("ClientId", "ClientSecrect");
-            Assert.Same("https://soydachi.com", MeetupApi.OauthSettings.RedirectUrl);
+            _handlerMock = new Mock<HttpMessageHandler>();
+            var httpClient = _handlerMock.CreateClient();
+            httpClient.BaseAddress = new Uri("https://api.meetup.com");
+            _client = new MeetupClient(httpClient);
         }
 
         [Fact]
-        public void ConfigureOauth_RedirectUrlProvided_ShouldReturnSameValue()
+        public async Task GetStatusAsync_ReturnsTrue_WhenStatusIsOk()
         {
-            MeetupApi.ConfigureOauth("ClientId", "ClientSecrect", "http://customUrlForTest.com");
-            Assert.Same("http://customUrlForTest.com", MeetupApi.OauthSettings.RedirectUrl);
+            _handlerMock.SetupRequest(HttpMethod.Get, "https://api.meetup.com/status/")
+                        .ReturnsResponse(HttpStatusCode.OK, "{\"status\": \"ok\"}", "application/json");
+
+            var result = await _client.GetStatusAsync();
+
+            Assert.True(result);
+        }
+
+        [Fact]
+        public async Task GetStatusAsync_ReturnsFalse_WhenStatusIsNotOk()
+        {
+            _handlerMock.SetupRequest(HttpMethod.Get, "https://api.meetup.com/status/")
+                        .ReturnsResponse(HttpStatusCode.OK, "{\"status\": \"error\"}", "application/json");
+
+            var result = await _client.GetStatusAsync();
+
+            Assert.False(result);
+        }
+
+        [Fact]
+        public async Task GetStatusAsync_ReturnsFalse_WhenExceptionOccurs()
+        {
+            _handlerMock.SetupRequest(HttpMethod.Get, "https://api.meetup.com/status/")
+                        .Throws(new HttpRequestException());
+
+            var result = await _client.GetStatusAsync();
+
+            Assert.False(result);
         }
     }
 }

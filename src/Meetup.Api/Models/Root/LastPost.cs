@@ -1,13 +1,13 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 // ReSharper disable once CheckNamespace
 namespace Meetup.Api
 {
     public class LastPost
     {
-        [JsonProperty("created")]
+        [JsonPropertyName("created")]
         public long Created { get; set; }
-        [JsonProperty("member")]
-        public Member Member { get; set; }
+        [JsonPropertyName("member")]
+        public Member? Member { get; set; }
     }
 }

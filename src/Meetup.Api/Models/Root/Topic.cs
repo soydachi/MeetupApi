@@ -1,17 +1,17 @@
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 // ReSharper disable once CheckNamespace
 namespace Meetup.Api
 {
     public class Topic
     {
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public int Id { get; set; }
 
-        [JsonProperty("urlkey")]
-        public string UrlKey { get; set; }
+        [JsonPropertyName("urlkey")]
+        public string? UrlKey { get; set; }
 
-        [JsonProperty("name")]
-        public string Name { get; set; }
+        [JsonPropertyName("name")]
+        public string? Name { get; set; }
     }
 }

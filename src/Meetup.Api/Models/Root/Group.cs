@@ -1,78 +1,78 @@
 using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 // ReSharper disable once CheckNamespace
 namespace Meetup.Api
 {
     public class Group
     {
-        [JsonProperty("lon")]
+        [JsonPropertyName("lon")]
         public double Longitude { get; set; }
 
-        [JsonProperty("visibility")]
-        public string Visibility { get; set; }
+        [JsonPropertyName("visibility")]
+        public string? Visibility { get; set; }
 
-        [JsonProperty("organizer")]
-        public Organizer Organizer { get; set; }
+        [JsonPropertyName("organizer")]
+        public Organizer? Organizer { get; set; }
 
-        [JsonProperty("link")]
-        public string Link { get; set; }
+        [JsonPropertyName("link")]
+        public string? Link { get; set; }
 
-        [JsonProperty("state")]
-        public string State { get; set; }
+        [JsonPropertyName("state")]
+        public string? State { get; set; }
 
-        [JsonProperty("join_mode")]
-        public string JoinMode { get; set; }
+        [JsonPropertyName("join_mode")]
+        public string? JoinMode { get; set; }
 
-        [JsonProperty("who")]
-        public string Who { get; set; }
+        [JsonPropertyName("who")]
+        public string? Who { get; set; }
 
-        [JsonProperty("country")]
-        public string Country { get; set; }
+        [JsonPropertyName("country")]
+        public string? Country { get; set; }
 
-        [JsonProperty("city")]
-        public string City { get; set; }
+        [JsonPropertyName("city")]
+        public string? City { get; set; }
 
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public int Id { get; set; }
 
-        [JsonProperty("category")]
-        public Category category { get; set; }
+        [JsonPropertyName("category")]
+        public Category? category { get; set; }
 
-        [JsonProperty("topics")]
-        public List<Topic> Topics { get; set; }
+        [JsonPropertyName("topics")]
+        public List<Topic>? Topics { get; set; }
 
-        [JsonProperty("timezone")]
-        public string Timezone { get; set; }
+        [JsonPropertyName("timezone")]
+        public string? Timezone { get; set; }
 
-        [JsonProperty("created")]
-        public object Created { get; set; }
+        [JsonPropertyName("created")]
+        public double? Created { get; set; }
 
-        [JsonProperty("description")]
-        public string Description { get; set; }
+        [JsonPropertyName("description")]
+        public string? Description { get; set; }
 
-        [JsonProperty("name")]
-        public string Name { get; set; }
+        [JsonPropertyName("name")]
+        public string? Name { get; set; }
 
-        [JsonProperty("rating")]
+        [JsonPropertyName("rating")]
         public double Rating { get; set; }
 
-        [JsonProperty("urlname")]
-        public string UrlName { get; set; }
+        [JsonPropertyName("urlname")]
+        public string? UrlName { get; set; }
 
-        [JsonProperty("lat")]
+        [JsonPropertyName("lat")]
         public double Latitude { get; set; }
 
-        [JsonProperty("members")]
+        [JsonPropertyName("members")]
         public int Members { get; set; }
 
-        [JsonProperty("group_photo")]
-        public GroupPhoto GroupPhoto { get; set; }
+        [JsonPropertyName("group_photo")]
+        public GroupPhoto? GroupPhoto { get; set; }
 
-        [JsonProperty("group_lon")]
+        [JsonPropertyName("group_lon")]
         public double GroupLongitude { get; set; }
 
-        [JsonProperty("group_lat")]
+        [JsonPropertyName("group_lat")]
         public double GroupLatitude { get; set; }
 
     }

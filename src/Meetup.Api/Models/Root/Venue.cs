@@ -1,41 +1,41 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 // ReSharper disable once CheckNamespace
 namespace Meetup.Api
 {
     public class Venue
     {
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public int Id { get; set; }
 
-        [JsonProperty("zip")]
-        public string Zip { get; set; }
+        [JsonPropertyName("zip")]
+        public string? Zip { get; set; }
 
-        [JsonProperty("lon")]
+        [JsonPropertyName("lon")]
         public double Longitude { get; set; }
 
-        [JsonProperty("repinned")]
+        [JsonPropertyName("repinned")]
         public bool RePinned { get; set; }
 
-        [JsonProperty("name")]
-        public string Name { get; set; }
+        [JsonPropertyName("name")]
+        public string? Name { get; set; }
 
-        [JsonProperty("state")]
-        public string State { get; set; }
+        [JsonPropertyName("state")]
+        public string? State { get; set; }
 
-        [JsonProperty("address_1")]
-        public string Address1 { get; set; }
+        [JsonPropertyName("address_1")]
+        public string? Address1 { get; set; }
 
-        [JsonProperty("lat")]
+        [JsonPropertyName("lat")]
         public double Latitude { get; set; }
 
-        [JsonProperty("city")]
-        public string City { get; set; }
+        [JsonPropertyName("city")]
+        public string? City { get; set; }
 
-        [JsonProperty("country")]
-        public string Country { get; set; }
+        [JsonPropertyName("country")]
+        public string? Country { get; set; }
 
-        [JsonProperty("localized_country_name")]
-        public string LocalizedCountryName { get; set; }
+        [JsonPropertyName("localized_country_name")]
+        public string? LocalizedCountryName { get; set; }
     }
 }

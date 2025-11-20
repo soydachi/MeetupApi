@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 // ReSharper disable once CheckNamespace
 namespace Meetup.Api
@@ -12,10 +12,10 @@ namespace Meetup.Api
             Meta = new Meta();
         }
 
-        [JsonProperty("results")]
+        [JsonPropertyName("results")]
         public List<Category> Results { get; set; }
 
-        [JsonProperty("meta")]
+        [JsonPropertyName("meta")]
         public Meta Meta { get; set; }
     }
 }

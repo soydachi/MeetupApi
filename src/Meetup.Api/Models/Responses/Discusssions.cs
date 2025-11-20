@@ -1,35 +1,35 @@
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 // ReSharper disable once CheckNamespace
 namespace Meetup.Api
 {
     public class Discusssions
     {
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public int Id { get; set; }
 
-        [JsonProperty("board")]
-        public Board Board { get; set; }
+        [JsonPropertyName("board")]
+        public Board? Board { get; set; }
 
-        [JsonProperty("created")]
+        [JsonPropertyName("created")]
         public long Created { get; set; }
 
-        [JsonProperty("updated")]
+        [JsonPropertyName("updated")]
         public long Updated { get; set; }
 
-        [JsonProperty("started_by")]
-        public StartedBy StartedBy { get; set; }
+        [JsonPropertyName("started_by")]
+        public StartedBy? StartedBy { get; set; }
 
-        [JsonProperty("subject")]
-        public string Subject { get; set; }
+        [JsonPropertyName("subject")]
+        public string? Subject { get; set; }
 
-        [JsonProperty("body")]
-        public string Body { get; set; }
+        [JsonPropertyName("body")]
+        public string? Body { get; set; }
 
-        [JsonProperty("last_post")]
-        public LastPost LastPost { get; set; }
+        [JsonPropertyName("last_post")]
+        public LastPost? LastPost { get; set; }
 
-        [JsonProperty("reply_count")]
+        [JsonPropertyName("reply_count")]
         public int ReplyCount { get; set; }
     }
 }

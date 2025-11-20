@@ -3,6 +3,6 @@ namespace Meetup.Api
 {
     public class StatusInfo
     {
-        public string status { get; set; }
+        public string? status { get; set; }
     }
 }
